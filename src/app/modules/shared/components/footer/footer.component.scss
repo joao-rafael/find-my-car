@@ -1,0 +1,26 @@
+@import './../../../../../styles/colors.scss';
+@import './../../../../../styles/globals.scss';
+
+.footer {
+    width: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 10px 0px;
+    align-items: center;
+    background-color: $primary-color;
+    color: $dark-primary-color;
+
+    .footer__title {
+        font-size: 14px;
+    }
+
+    .footer__signature {
+        font-size: 12px;
+        color: $light-primary-color;
+
+        span {
+            font-weight: bold;
+        }
+    }
+}
