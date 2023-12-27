@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/material.scss';
+@import './styles/colors.scss';
+@import './styles/typography.scss';
+
+// Global Styling (normalization)
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote, dl, dd {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $white;
+    font-family: $roboto;
+    font-weight: 400;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
