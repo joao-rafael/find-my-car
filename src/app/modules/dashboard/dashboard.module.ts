@@ -5,6 +5,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { DataTableComponent } from './data-table/data-table.component';
 import { DataMapComponent } from './data-map/data-map.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapInfoWindow, GoogleMap } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,12 @@ import { DataMapComponent } from './data-map/data-map.component';
   imports: [
     CommonModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    GoogleMapsModule
+  ],
+  providers:[
+    MapInfoWindow,
+    GoogleMap
   ]
 })
 export class DashboardModule { }

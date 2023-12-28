@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     BrowserAnimationsModule,
     SharedModule,
     HomeModule,
-    DashboardModule
+    DashboardModule,
+    GoogleMapsModule
   ],
-  providers: [],
+  providers: [ GoogleMapsModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
