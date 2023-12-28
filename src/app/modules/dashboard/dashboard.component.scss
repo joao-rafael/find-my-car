@@ -1,0 +1,11 @@
+.dashboard__grid {
+
+    .dashboard__tile {
+        display: flex;
+
+        .dashboard__table {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
