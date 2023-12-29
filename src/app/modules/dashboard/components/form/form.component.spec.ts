@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataMapComponent } from './data-map.component';
+import { FormComponent } from './form.component';
 
-describe('DataMapComponent', () => {
-  let component: DataMapComponent;
-  let fixture: ComponentFixture<DataMapComponent>;
+describe('FormComponent', () => {
+  let component: FormComponent;
+  let fixture: ComponentFixture<FormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DataMapComponent ]
+      imports: [FormComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(DataMapComponent);
+    
+    fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

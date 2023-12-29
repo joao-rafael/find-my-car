@@ -1,5 +1,6 @@
 @import './../../../../../styles/colors.scss';
 @import './../../../../../styles/globals.scss';
+@import './../../../../../styles/typography.scss';
 
 .header {
     position: fixed;
@@ -9,5 +10,7 @@
 
     .header__title {
         color: $white;
+        font-family: $montserrat;
+        font-weight: 700;
     }
 }
