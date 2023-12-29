@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/button/button.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { Mobi7Service } from '../../services/mobi7.service';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     HeaderComponent,
     FooterComponent,
     ButtonComponent,
-    SnackbarComponent
+    SnackbarComponent,
   ],
   imports: [
     CommonModule,
