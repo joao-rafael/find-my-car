@@ -10,6 +10,9 @@ import { VehiclePositionData } from '../modules/shared/interfaces/vehicle-positi
  * 
  * @description
  * This service connects to the mobi7 api and fetches data from the server
+ * 
+ * @remark
+ * The received server data is being translated to english by using the pipe and map operators
  */
 @Injectable({
   providedIn: 'root'
@@ -73,7 +76,8 @@ export class Mobi7Service {
       map((data: any[]) => {
         return data.map(item => {
           return {
-            license: item.posicao,
+            id: item.id,
+            license: item.placa,
             date_position: item.data_posicao,
             speed: item.velocidade,
             latitude: item.latitude,
@@ -87,9 +91,9 @@ export class Mobi7Service {
 
   /**
    * HTTP GET REQUEST FOR REGISTERED LICENSES
-   * @returns observable
+   * @returns observable <string>
    */  
-  getLicenses(): Observable<String[]> {
-    return this.client.get<String[]>(this.mobi7API+'/posicao/placas');
+  getLicenses(): Observable<string[]> {
+    return this.client.get<string[]>(this.mobi7API+'/placas');
   }
 }

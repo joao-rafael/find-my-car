@@ -1,8 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500;700;900&display=swap');
-
-// General Typography Styling
-$roboto: 'Roboto', sans-serif;
-$montserrat: 'Montserrat', sans-serif;
+@import 'globals.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Roboto:wght@300;400;500;700;900&display=swap');
 
 h1,
 h2,

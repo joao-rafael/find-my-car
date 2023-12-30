@@ -1,0 +1,1 @@
+export const TABLE_COLUMNS: string[] = ['license', 'poiName', 'timeSpent', 'latitude', 'longitude', 'date'];

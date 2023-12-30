@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { DataMapService } from './services/data-map.service';
+import { MapService } from './services/map.service';
 import { Mobi7Service } from './services/mobi7.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     GoogleMapsModule,
     HttpClientModule
   ],
-  providers: [ GoogleMapsModule, DataMapService, Mobi7Service],
+  providers: [ GoogleMapsModule, MapService, Mobi7Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

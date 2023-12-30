@@ -11,12 +11,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HeaderPipe } from './components/table/pipes/header.pipe';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     TableComponent,
-    MapComponent
+    MapComponent,
+    HeaderPipe
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     ReactiveFormsModule,
     GoogleMapsModule,
-    MatButtonModule
+    MatButtonModule,
+    
   ],
   providers:[
     MapInfoWindow,

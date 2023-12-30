@@ -1,25 +1,12 @@
 <section class="data-table">
-  
-<table mat-table [dataSource]="vehicleDataList" class="data-table__table">
-    <ng-container matColumnDef="placa">
-      <th mat-header-cell *matHeaderCellDef>License Plate</th>
-      <td mat-cell *matCellDef="let element">{{ element.license }}</td>
+  <table mat-table [dataSource]="dataList" class="data-table__table">
+
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef>{{ column | header }}</th>
+      <td mat-cell *matCellDef="let element">{{ getElementData(element, column) }}</td>
     </ng-container>
-  
-    <ng-container matColumnDef="data_posicao">
-      <th mat-header-cell *matHeaderCellDef>Registered Date</th>
-      <td mat-cell *matCellDef="let element">{{ element.date_position | date }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="velocidade">
-      <th mat-header-cell *matHeaderCellDef>Speed</th>
-      <td mat-cell *matCellDef="let element">{{ element.speed }}</td>
-    </ng-container>
-  
-    <!-- Adicione mais colunas conforme necessário -->
-  
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
 </section>
