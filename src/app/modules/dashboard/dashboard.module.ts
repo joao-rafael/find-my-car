@@ -14,8 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { HeaderPipe } from './components/table/pipes/header.pipe';
 import { FormComponent } from './components/form/form.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     GoogleMapsModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatIconModule
+    MatIconModule,
+    MatRippleModule
   ],
   providers:[
     MapInfoWindow,

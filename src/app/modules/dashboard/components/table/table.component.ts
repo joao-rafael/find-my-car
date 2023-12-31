@@ -2,6 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { TABLE_COLUMNS } from 'src/app/modules/shared/constants/table.constants';
 import { VehiclePositionData, VehicleTimeInPOIData } from '../../../shared/interfaces/vehicle-position.interface';
 import { DatePipe } from '@angular/common';
+import { MapService } from 'src/app/services/map.service';
 
 /**
  * @description
@@ -31,6 +32,8 @@ export class TableComponent {
    * @type {DatePipe}
    */
   datePipe: DatePipe = new DatePipe('en-US');
+
+  constructor(private mapService: MapService) { }
 
   /**
    * Gets cell data 
@@ -66,5 +69,12 @@ export class TableComponent {
     const minutes = Math.floor(remainingSeconds / 60); 
 
     return `${hours}h ${minutes}m`;
+  }
+
+  onRowClick(element: VehicleTimeInPOIData) {
+    this.mapService.sendMarkerInfo({
+      coordinate: { lat: element.latitude, lng: element.longitude },
+      color: '#8bc34a' 
+    });
   }
 }

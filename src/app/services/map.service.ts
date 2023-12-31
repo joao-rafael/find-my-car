@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import '@angular/google-maps';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,27 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class MapService {
   mapsUrl: string = environment.mapsApi;
 
-  constructor(private http: HttpClient) { }
+  private markerInfoSource = new Subject<{ coordinate: { lat: number; lng: number }; color: string }>();
+  markerInfo$ = this.markerInfoSource.asObservable();
 
-  /**
-   * Gets distance from 2 points
-   * @param radius 
-   * @param latitude 
-   * @param longitude 
-   * @returns 
-   */
-  getDistance(radius: number, latitude: number, longitude:number) {
-    const point = new google.maps.LatLng(-3.10194, -60.025);
-    const center = new google.maps.LatLng(-3.07307, -60.023);
-    
-    const isWithinRadius = google.maps.geometry.spherical.computeDistanceBetween(point, center) <= radius;
-    
-    if (isWithinRadius) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  constructor(private http: HttpClient) { }
 
   /**
    * Loads google maps api
@@ -56,5 +40,9 @@ export class MapService {
 
       document.head.appendChild(script);
     });
+  }
+
+  sendMarkerInfo(markerInfo: { coordinate: { lat: number; lng: number }; color: string }) {
+    this.markerInfoSource.next(markerInfo);
   }
 }
