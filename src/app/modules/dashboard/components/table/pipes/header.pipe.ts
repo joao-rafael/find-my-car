@@ -8,16 +8,16 @@ export class HeaderPipe implements PipeTransform {
     switch (column) {
       case 'license':
         return 'License';
-      case 'date_position':
-        return 'Registered Date';
       case 'speed':
         return 'Speed';
-      case 'latitude':
-        return 'Latitude';
-      case 'longitude':
-        return 'Longitude';
       case 'poiName':
-        return 'Point of Interest (POI)'
+        return 'POI';
+      case 'entryTime':
+        return 'Entry Time';
+      case 'exitTime':
+        return 'Exit Time';
+      case 'timeSpent':
+        return 'Time Spent';
       default:
         return '';
     }

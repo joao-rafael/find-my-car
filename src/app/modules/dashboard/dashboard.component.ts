@@ -11,8 +11,23 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  /**
+   * Is the dashboard currently loading?
+   * @type {boolean}
+   */
   isLoading: boolean = false;
-  vehicleTimeInPOIList: any = [];
+
+  /**
+   * Vehicle positions with associated poi
+   * @type {VehicleTimeInPOIData}
+   */
+  positionInPOIList: VehiclePositionData[] = [];
+
+  /**
+   * Consolidated table data (time spent in each poi per vehicle)
+   * @type {VehicleTimeInPOIData}
+   */
+  vehicleTimeInPOIList: VehicleTimeInPOIData[]  = [];
 
   constructor(
     private poiTrackingService: POITrackingService,
@@ -44,8 +59,9 @@ export class DashboardComponent implements OnInit {
           console.log(vehiclePositions)
 
           if (pois && licenses && vehiclePositions) {
-            this.vehicleTimeInPOIList = this.poiTrackingService.associatePOI(vehiclePositions, pois);
-            console.log(this.poiTrackingService.calculateTimePerPOI(this.vehicleTimeInPOIList))
+            this.positionInPOIList = this.poiTrackingService.associatePOI(vehiclePositions, pois);
+            this.vehicleTimeInPOIList = this.poiTrackingService.calculateTimePerPOI(this.positionInPOIList);
+            console.log(this.vehicleTimeInPOIList);
           }
         });
       });

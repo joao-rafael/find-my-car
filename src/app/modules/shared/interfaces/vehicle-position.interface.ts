@@ -9,12 +9,11 @@ export interface VehiclePositionData {
 }
 
 export interface VehicleTimeInPOIData {
-    license: string;
-    poiName: string;
-    date_position: Date;
-    timeSpent: number;
+    entryTime: Date;
+    exitTime: Date | null;
     latitude: number;
     longitude: number;
-    selected?: boolean;
-    poi?: string;
+    license: string;
+    poiName: string;
+    timeSpent: number;
 }

@@ -106,7 +106,7 @@ export class POITrackingService {
    * @returns 
    */
   calculateTimePerPOI(positions: any[]) {
-    const timePerPOI: { [key: string]: any } = {};
+    const timeInOutPerPOI: { [key: string]: any } = {};
   
     positions.sort((a, b) => {
       if (a.license === b.license) {
@@ -115,28 +115,31 @@ export class POITrackingService {
       return a.license.localeCompare(b.license);
     });
   
-    for (let i = 0; i < positions.length - 1; i++) {
+    for (let i = 0; i < positions.length; i++) {
       const currentPosition = positions[i];
-      const nextPosition = positions[i + 1];
   
-      if (currentPosition.poi === nextPosition.poi) {
-        const elapsedTime = (new Date(nextPosition.date_position).getTime() - new Date(currentPosition.date_position).getTime()) / 1000; // In seconds
+      if (!timeInOutPerPOI[currentPosition.license + currentPosition.poi]) {
+        timeInOutPerPOI[currentPosition.license + currentPosition.poi] = {
+          license: currentPosition.license,
+          poiName: currentPosition.poi,
+          entryTime: new Date(currentPosition.date_position),
+          exitTime: null,
+          timeSpent: 0,
+          latitude: currentPosition.latitude,
+          longitude: currentPosition.longitude,
+        };
+      }
   
-        if (!timePerPOI[currentPosition.poi]) {
-          timePerPOI[currentPosition.poi] = {
-            poiName: currentPosition.poi,
-            timeSpent: 0,
-            latitude: currentPosition.latitude,
-            longitude: currentPosition.longitude,
-          };
-        }
-  
-        timePerPOI[currentPosition.poi].timeSpent += Math.abs(elapsedTime);
+      if (i < positions.length - 1 && currentPosition.poi === positions[i + 1].poi) {
+        const elapsedTime = (new Date(positions[i + 1].date_position).getTime() - new Date(currentPosition.date_position).getTime()) / 1000; // In seconds
+        timeInOutPerPOI[currentPosition.license + currentPosition.poi].exitTime = new Date(positions[i + 1].date_position);
+        timeInOutPerPOI[currentPosition.license + currentPosition.poi].timeSpent += elapsedTime;
+        i++;
       }
     }
   
-    const timePerPOIArray = Object.values(timePerPOI);
-    return timePerPOIArray;
-  }
+    const reducedTable = Object.values(timeInOutPerPOI);
   
+    return reducedTable;
+  }
 }
