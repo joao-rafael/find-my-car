@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, pipe,  map} from 'rxjs';
 import { PointOfInterest } from '../modules/shared/interfaces/poi.interface';

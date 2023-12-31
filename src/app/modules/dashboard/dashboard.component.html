@@ -1,12 +1,15 @@
 <section class="dashboard">
     <mat-grid-list class="dashboard__grid" cols="2" >
         <mat-grid-tile class="dashboard__tile">
-            <app-table [dataList]="vehicleTimeInPOIList" class="dashboard__table">
-            </app-table>
+            <section class="dashboard__wrapper">
+                <app-form class="dashboard__form"></app-form>
+                <app-table [dataList]="vehicleTimeInPOIList" class="dashboard__table">
+                </app-table>
+            </section>
         </mat-grid-tile>
         <mat-grid-tile class="dashboard__tile">
-<!--             <app-map class="dashboard__table">
-            </app-map> -->
+            <app-map class="dashboard__map">
+            </app-map>
         </mat-grid-tile>
     </mat-grid-list>
 </section>

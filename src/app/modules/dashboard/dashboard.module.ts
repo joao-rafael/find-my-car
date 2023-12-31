@@ -12,11 +12,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderPipe } from './components/table/pipes/header.pipe';
+import { FormComponent } from './components/form/form.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     TableComponent,
+    FormComponent,
     MapComponent,
     HeaderPipe
   ],
@@ -26,10 +31,12 @@ import { HeaderPipe } from './components/table/pipes/header.pipe';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     GoogleMapsModule,
     MatButtonModule,
-    
+    MatDatepickerModule,
+    MatIconModule
   ],
   providers:[
     MapInfoWindow,

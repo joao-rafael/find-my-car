@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MapService } from './services/map.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'find-my-car';
+
+  constructor(private mapService: MapService) {
+    this.mapService.loadGoogleMapsAPI();
+  }
 }
