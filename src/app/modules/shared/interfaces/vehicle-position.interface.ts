@@ -5,9 +5,10 @@ export interface VehiclePositionData {
     longitude: number;
     latitude: number;
     ignited: boolean;
+    poi?: string;
 }
 
-export interface VehicleTimeInPOI {
+export interface VehicleTimeInPOIData {
     license: string;
     poiName: string;
     date_position: Date;
@@ -15,4 +16,5 @@ export interface VehicleTimeInPOI {
     latitude: number;
     longitude: number;
     selected?: boolean;
+    poi?: string;
 }

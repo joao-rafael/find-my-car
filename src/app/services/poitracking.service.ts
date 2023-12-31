@@ -72,4 +72,71 @@ export class POITrackingService {
 
     return distance;
   }
+
+  /**
+   * Associate POI to vehicles
+   * 
+   * @description gets rid of positions without POI
+   */
+  associatePOI(vehiclePositions: VehiclePositionData[], pois: PointOfInterest[]) {
+    let arr : VehiclePositionData[] = [];
+
+    for (const position of vehiclePositions) {
+      for (const poi of pois) {
+        const distancia = this.haversine(
+          position.latitude,
+          position.longitude,
+          poi.latitude,
+          poi.longitude
+        );
+    
+        if (distancia <= poi.radius) {
+          position.poi = poi.name; 
+          arr.push(position);
+          break;
+        } 
+      }
+    }
+    return arr;
+  }
+
+  /**
+   * Calculates the time per poi and vehicle
+   * @param positions 
+   * @returns 
+   */
+  calculateTimePerPOI(positions: any[]) {
+    const timePerPOI: { [key: string]: any } = {};
+  
+    positions.sort((a, b) => {
+      if (a.license === b.license) {
+        return new Date(a.date_position).getTime() - new Date(b.date_position).getTime();
+      }
+      return a.license.localeCompare(b.license);
+    });
+  
+    for (let i = 0; i < positions.length - 1; i++) {
+      const currentPosition = positions[i];
+      const nextPosition = positions[i + 1];
+  
+      if (currentPosition.poi === nextPosition.poi) {
+        const elapsedTime = (new Date(nextPosition.date_position).getTime() - new Date(currentPosition.date_position).getTime()) / 1000; // In seconds
+  
+        if (!timePerPOI[currentPosition.poi]) {
+          timePerPOI[currentPosition.poi] = {
+            poiName: currentPosition.poi,
+            timeSpent: 0,
+            latitude: currentPosition.latitude,
+            longitude: currentPosition.longitude,
+          };
+        }
+  
+        timePerPOI[currentPosition.poi].timeSpent += Math.abs(elapsedTime);
+      }
+    }
+  
+    const timePerPOIArray = Object.values(timePerPOI);
+    return timePerPOIArray;
+  }
+  
 }

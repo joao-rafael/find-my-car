@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { TABLE_COLUMNS } from 'src/app/modules/shared/constants/table.constants';
-import { VehicleTimeInPOI } from '../../../shared/interfaces/vehicle-position.interface';
+import { VehiclePositionData, VehicleTimeInPOIData } from '../../../shared/interfaces/vehicle-position.interface';
 
 /**
  * @description
@@ -17,7 +17,7 @@ export class TableComponent {
    * Data for the table
    * @type {VehicleTimeInPOI}
    */
-  @Input() dataList: VehicleTimeInPOI[] = [];
+  @Input() dataList: any[] = [];
 
   /**
    * Displayed table columns
@@ -25,15 +25,24 @@ export class TableComponent {
    */
   displayedColumns: string[] = TABLE_COLUMNS;
 
-  
-  getElementData(element: VehicleTimeInPOI, column: string): any {
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes) {
+      console.log(changes);
+    }
+  }
+  getElementData(element: VehiclePositionData, column: string): any {
+
     switch (column) {
       case 'license':
         return element.license;
       case 'date_position':
         return element.date_position;
-      case 'timeSpent':
-        return element.timeSpent;
+      case 'longitude':
+        return element.longitude;
+      case 'latitude':
+        return element.latitude;
+      case 'poiName':
+        return element.poi;
       default:
         return '';
     }
