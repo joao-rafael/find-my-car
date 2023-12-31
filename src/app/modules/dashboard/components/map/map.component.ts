@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { PointOfInterest } from 'src/app/modules/shared/interfaces/poi.interface';
 import { MapService } from 'src/app/services/map.service';
 import { Mobi7Service } from 'src/app/services/mobi7.service';
+import { MAP_ICON } from 'src/app/modules/shared/constants/map.constants';
 
 @Component({
   selector: 'app-map',
@@ -22,6 +23,7 @@ export class MapComponent implements AfterViewInit {
     
     this.subscription = this.mapService.markerInfo$.subscribe((markerInfo) => {
       if (this.map) {
+        console.log(markerInfo);
         this.addVehicleMarker(markerInfo.coordinate, markerInfo.color);
       }
     });
@@ -57,8 +59,22 @@ export class MapComponent implements AfterViewInit {
     const marker = new google.maps.Marker({
       position: coordinate,
       map: this.map,
-      icon: `http://maps.google.com/mapfiles/ms/icons/${color}-dot.png`
+      icon: MAP_ICON
     });
+    const infowindow = new google.maps.InfoWindow({
+      content: `<p><strong>Vehicle Position Data</strong></p>`
+    });
+    this.map.setCenter(coordinate);
+    this.map.setZoom(15); 
+    infowindow.open(this.map, marker);
+
+    infowindow.addListener('closeclick', () => {
+      this.map.setZoom(12); 
+      marker.setMap(null); 
+      
+    });
+  
+    
   }
 
   addPois(): void {
