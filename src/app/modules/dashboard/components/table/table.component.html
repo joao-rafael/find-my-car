@@ -1,4 +1,4 @@
-<section class="data-table">
+<section class="data-table" *ngIf="dataList">
   <table mat-table [dataSource]="dataList" class="data-table__table">
 
     <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">

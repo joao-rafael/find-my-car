@@ -10,7 +10,7 @@
           <input matInput placeholder="Vehicle License" formControlName="license">
         </mat-form-field>
     
-        <button mat-flat-button color="accent" type="submit" class="form__button">
+        <button mat-flat-button color="accent" type="submit" class="form__button" [disabled]="form.invalid">
             <mat-icon aria-hidden="false" aria-label="Car Icon" fontIcon="filter_alt"></mat-icon>
             Filter
         </button>

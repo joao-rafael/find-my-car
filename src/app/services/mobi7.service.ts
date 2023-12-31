@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, pipe,  map} from 'rxjs';
 import { PointOfInterest } from '../modules/shared/interfaces/poi.interface';
 import { VehiclePositionData } from '../modules/shared/interfaces/vehicle-position.interface';
+import { FormFilter } from '../modules/shared/interfaces/form-filter.interface';
 
 /**
  * MOBI7 Service
@@ -65,18 +66,20 @@ export class Mobi7Service {
 
   /**
    * HTTP GET REQUEST FOR REGISTERED POSITIONS 
+   * @param filter optional request filter
    * @returns observable
    */  
-  getRegisteredPositions(license?: string, date?: string): Observable<VehiclePositionData[]> {
+  getRegisteredPositions(filter?: FormFilter): Observable<VehiclePositionData[]> {
     let params = new HttpParams();
-    license ? params = params.set('placa', license) : '';
-    date ? params = params.set('data', date) : '';
+
+    filter && filter.license ? params = params.set('placa', filter.license) : '';
+    filter && filter.date ? params = params.set('data', filter.date.toISOString()) : '';
 
     return this.client.get<VehiclePositionData[]>(this.mobi7API+'/posicao', { params }).pipe(
       map((data: any[]) => {
         return data.map(item => {
           return {
-            id: item.id,
+            id: item._id,
             license: item.placa,
             date_position: item.data_posicao,
             speed: item.velocidade,

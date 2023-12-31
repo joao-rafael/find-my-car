@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { VehiclePositionData, VehicleTimeInPOIData } from '../modules/shared/interfaces/vehicle-position.interface';
 
 /**
  * @description
@@ -9,5 +11,4 @@ import { Injectable } from '@angular/core';
 })
 export class DashboardService {
 
-  constructor() { }
 }

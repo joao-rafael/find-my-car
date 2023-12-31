@@ -4,6 +4,7 @@ import { VehiclePositionData, VehicleTimeInPOIData } from '../shared/interfaces/
 import { PointOfInterest } from '../shared/interfaces/poi.interface';
 import { POITrackingService } from 'src/app/services/poitracking.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { FormFilter } from '../shared/interfaces/form-filter.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,7 +44,7 @@ export class DashboardComponent implements OnInit {
    * Gets the necessary data by using the services
    * @returns {void}
    */
-  loadData(): void {
+  loadData(filter?: FormFilter): void {
     let pois: PointOfInterest[];
     let licenses: string[];
     let vehiclePositions: VehiclePositionData[];
@@ -54,17 +55,24 @@ export class DashboardComponent implements OnInit {
       this.mobi7Service.getLicenses().subscribe((licensesData: string[]) => {
         licenses = licensesData;
 
-        this.mobi7Service.getRegisteredPositions().subscribe((positionsData: VehiclePositionData[]) => {
+        this.mobi7Service.getRegisteredPositions(filter).subscribe((positionsData: VehiclePositionData[]) => {
           vehiclePositions = positionsData;
           console.log(vehiclePositions)
 
           if (pois && licenses && vehiclePositions) {
             this.positionInPOIList = this.poiTrackingService.associatePOI(vehiclePositions, pois);
             this.vehicleTimeInPOIList = this.poiTrackingService.calculateTimePerPOI(this.positionInPOIList);
-            console.log(this.vehicleTimeInPOIList);
           }
         });
       });
     });
+  }
+
+  /**
+   * Applies filter from the form (via event)
+   * @param filter emitted form filter
+   */
+  onFilterChange(filter: FormFilter): void {
+    this.loadData(filter);
   }
 }
