@@ -5,3 +5,7 @@ export const MAP_ICON = {
     strokeWeight: 0,
     scale: 10 
 }
+
+export const POI_INFO_WINDOW = (name: string, radius: number): string => `<p><strong>Point of Interest/${name}</strong></p><br><p>Radius: ${radius}m</p>`;
+
+export const MARKER_INFO_WINDOW: string = `<p><strong>Vehicle Position Data</strong></p>`;
