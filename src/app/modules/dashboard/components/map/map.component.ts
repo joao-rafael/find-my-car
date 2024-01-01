@@ -43,7 +43,6 @@ export class MapComponent implements AfterViewInit {
   pois: PointOfInterest[] = [];
 
   constructor(private mapService: MapService, private mobi7Service: Mobi7Service) {
-    
     this.subscription = this.mapService.markerInfo$.subscribe((markerInfo) => {
       if (this.map) {
         this.addVehicleMarker(markerInfo.coordinate);

@@ -26,6 +26,7 @@
             text-align: center;
             font-weight: 700;
             margin-bottom: 20px;
+            font-size: 26px;
         }
 
         p {
@@ -46,7 +47,7 @@
         display: block;
 
         h2 {
-            margin-bottom: 20px;
+            margin: 30px 0px 20px 0px;
         }
 
         @media only screen and (max-width: $medium-device-breakpoint) {

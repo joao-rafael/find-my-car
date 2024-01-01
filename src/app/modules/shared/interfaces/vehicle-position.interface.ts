@@ -9,8 +9,8 @@ export interface VehiclePositionData {
 }
 
 export interface VehicleTimeInPOIData {
-    entryTime: Date;
-    exitTime: Date | null;
+    entryTime: Date | string;
+    exitTime: Date | string;
     latitude: number;
     longitude: number;
     license: string;

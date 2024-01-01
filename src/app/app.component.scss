@@ -1,3 +1,5 @@
+@import './../styles/globals.scss';
+
 .app {
     min-height: 100%;
     display: flex;
@@ -6,7 +8,7 @@
 
     .app__main {
         padding-top: 64px;
-        height: calc(100vh - 115px);
+        min-height: calc(100vh - 115px);
     }
     
     .app__footer {
@@ -14,5 +16,12 @@
         margin-bottom: 0;
         align-self: flex-end;
         width: 100%;
+    }
+
+    @media screen and (max-width: $medium-device-breakpoint) {
+        .app__main {
+            padding-top: 56px;
+            height: calc(100vh - 107px);
+        }
     }
 }

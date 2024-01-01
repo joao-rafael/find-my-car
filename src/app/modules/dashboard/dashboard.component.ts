@@ -5,6 +5,8 @@ import { PointOfInterest } from '../shared/interfaces/poi.interface';
 import { POITrackingService } from 'src/app/services/poitracking.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { FormFilter } from '../shared/interfaces/form-filter.interface';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,15 +31,35 @@ export class DashboardComponent implements OnInit {
    * @type {VehicleTimeInPOIData}
    */
   vehicleTimeInPOIList: VehicleTimeInPOIData[]  = [];
+  isSmallScreen: boolean = false;
+
+  breakpointSubscription: Subscription | undefined;
 
   constructor(
     private poiTrackingService: POITrackingService,
     private mobi7Service: Mobi7Service,
-    private dashboardService: DashboardService
-  ) { }
+    private breakpointObserver: BreakpointObserver
+  ) { 
+    this.listenToBreakpointChanges();
+  }
+
+  listenToBreakpointChanges() {
+    this.breakpointSubscription = this.breakpointObserver.observe([
+      Breakpoints.Small,
+      Breakpoints.XSmall
+    ]).subscribe(result => {
+      this.isSmallScreen = result.matches;
+    });
+  }
 
   ngOnInit(): void {
     this.loadData();
+  }
+
+  ngOnDestroy() {
+    if (this.breakpointSubscription) {
+      this.breakpointSubscription.unsubscribe();
+    }
   }
 
   /**

@@ -79,9 +79,9 @@ export class Mobi7Service {
       map((data: any[]) => {
         return data.map(item => {
           return {
-            id: item._id,
+            id: item.id,
             license: item.placa,
-            date_position: item.data_posicao,
+            date_position: item.data,
             speed: item.velocidade,
             latitude: item.latitude,
             longitude: item.longitude,
