@@ -3,11 +3,12 @@ import { Mobi7Service } from '../../services/mobi7.service';
 import { VehiclePositionData, VehicleTimeInPOIData } from '../shared/interfaces/vehicle-position.interface';
 import { PointOfInterest } from '../shared/interfaces/poi.interface';
 import { POITrackingService } from 'src/app/services/poitracking.service';
-import { DashboardService } from 'src/app/services/dashboard.service';
 import { FormFilter } from '../shared/interfaces/form-filter.interface';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subscription } from 'rxjs';
 
+/**
+ * @description 
+ * This component represents the dashboard web page and has 3 sub-components
+ */
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -31,35 +32,14 @@ export class DashboardComponent implements OnInit {
    * @type {VehicleTimeInPOIData}
    */
   vehicleTimeInPOIList: VehicleTimeInPOIData[]  = [];
-  isSmallScreen: boolean = false;
-
-  breakpointSubscription: Subscription | undefined;
 
   constructor(
     private poiTrackingService: POITrackingService,
     private mobi7Service: Mobi7Service,
-    private breakpointObserver: BreakpointObserver
-  ) { 
-    this.listenToBreakpointChanges();
-  }
-
-  listenToBreakpointChanges() {
-    this.breakpointSubscription = this.breakpointObserver.observe([
-      Breakpoints.Small,
-      Breakpoints.XSmall
-    ]).subscribe(result => {
-      this.isSmallScreen = result.matches;
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
-  }
-
-  ngOnDestroy() {
-    if (this.breakpointSubscription) {
-      this.breakpointSubscription.unsubscribe();
-    }
   }
 
   /**
@@ -68,26 +48,20 @@ export class DashboardComponent implements OnInit {
    */
   loadData(filter?: FormFilter): void {
     let pois: PointOfInterest[];
-    let licenses: string[];
     let vehiclePositions: VehiclePositionData[];
 
     this.mobi7Service.getPois().subscribe((poisData: PointOfInterest[]) => {
       pois = poisData;
 
-      this.mobi7Service.getLicenses().subscribe((licensesData: string[]) => {
-        licenses = licensesData;
-
         this.mobi7Service.getRegisteredPositions(filter).subscribe((positionsData: VehiclePositionData[]) => {
           vehiclePositions = positionsData;
-          console.log(vehiclePositions)
 
-          if (pois && licenses && vehiclePositions) {
+          if (pois && vehiclePositions) {
             this.positionInPOIList = this.poiTrackingService.associatePOI(vehiclePositions, pois);
             this.vehicleTimeInPOIList = this.poiTrackingService.calculateTimePerPOI(this.positionInPOIList);
           }
         });
       });
-    });
   }
 
   /**

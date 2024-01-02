@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControlOptions, FormBuilder, FormGroup } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
+/**
+ * @description
+ * This component is a form for filtering purposes
+ */
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -14,7 +19,7 @@ export class FormComponent {
     this.form = this.formBuilder.group({
       date: [''], 
       license: [''] 
-    }, { validators: this.filterValidator });
+    }, { validators: this.filterValidator } as AbstractControlOptions);
   }
 
   /**
@@ -23,7 +28,13 @@ export class FormComponent {
    * emits the filter to the upper component
    */
   filter() {
-    const filterParams = this.form.value;
+    let filterParams = this.form.value;
+    if(filterParams.date) {
+      const date = filterParams.date;
+      const isoDateString: string = date.toISOString();
+      const simpleDate: string = isoDateString.split('T')[0].replaceAll('-', '/');
+      filterParams.date = formatDate(simpleDate, 'MM/dd/yyyy', 'en-US');
+    }
     this.filterChange.emit(filterParams);
   }
 
@@ -42,5 +53,4 @@ export class FormComponent {
     }
     return null;
   }
-
 }

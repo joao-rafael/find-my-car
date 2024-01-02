@@ -1,7 +1,7 @@
 <section class="dashboard">
     <section class="dashboard__grid">
         <div class="dashboard__tile">
-            <app-form class="dashboard__form"></app-form>
+            <app-form class="dashboard__form" (filterChange)="onFilterChange($event)"></app-form>
             <app-table [dataList]="vehicleTimeInPOIList" class="dashboard__table">
             </app-table>
         </div>

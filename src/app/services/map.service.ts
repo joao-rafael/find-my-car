@@ -4,12 +4,26 @@ import '@angular/google-maps';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
+/**
+ * @description
+ * This service contains operations related to the map component
+ * and to the google-maps API integration
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
+  /**
+   * Google maps URL with API Key
+   * @remark
+   * must be kept away from public repositories
+   */
   mapsUrl: string = environment.mapsApi;
 
+  /**
+   * Subject: updates the map with marker data from the table
+   * @type {subject}
+   */
   private markerInfoSource = new Subject<{ coordinate: { lat: number; lng: number }; color: string }>();
   markerInfo$ = this.markerInfoSource.asObservable();
 
@@ -42,6 +56,10 @@ export class MapService {
     });
   }
 
+  /**
+   * Updates the marker subject
+   * @param markerInfo marker parameters
+   */
   sendMarkerInfo(markerInfo: { coordinate: { lat: number; lng: number }; color: string }) {
     this.markerInfoSource.next(markerInfo);
   }

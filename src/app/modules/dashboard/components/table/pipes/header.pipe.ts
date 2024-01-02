@@ -1,5 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * @description
+ * This pipes convert raw array strings into presentable header titles
+ */
 @Pipe({
   name: 'header'
 })
