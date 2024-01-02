@@ -9,9 +9,8 @@ Firstly, clone the project and add the Google Maps API Key to the GMAPS_API_KEY 
 Install the dependencies with `npm install` and then run the server with `ng serve`.
 After that, navigate to `http://localhost:4200/`.
 
-<strong>This project uses miragejs, to use the API delete the mirageJS script from main.ts (src/main.ts)</strong>
+<strong>This project uses miragejs (due to server instability during integration), to use the original proposed API delete the mirageJS script from main.ts (src/main.ts)</strong>
 
-Clone this repository 
 ## General Information and Dependencies ℹ️
 
 This project was developed as a part of a coding challenge from Localiza. This project has the following dependencies (aside from the ones which come with every Angular project):
@@ -20,6 +19,7 @@ This project was developed as a part of a coding challenge from Localiza. This p
 * Firebase (for hosting)
 * MirageJS (for mock/dumb server)
 
+Also, this project uses a customized angular material (the definition is at styles/material.scss);
 
 ## Live version 🌐
 
@@ -36,9 +36,13 @@ To generate new documentation files use: `npm run compodoc`.
 The app is made of one base module (app-module) and 3 submodules + a routing module.
 The business logic is concetrated in the services.
 
+Detailed information on the project organization can be seen in the hosted documentation.
+
 ## Design prototypes 🎨
 
 Some low-level design prototypes made by me are available at the following [Figma Link](https://www.figma.com/file/4gxN78ZrHcSb2GfyGwvprM/localiza-challenge?type=design&node-id=0%3A1&mode=design&t=qK9LRQSRdK75umEG-1)
+
+
 
 
 ## Code scaffolding 🛠️
