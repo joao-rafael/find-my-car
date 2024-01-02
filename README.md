@@ -11,6 +11,10 @@ After that, navigate to `http://localhost:4200/`.
 
 <strong>This project uses miragejs (due to server instability during integration), to use the original proposed API delete the mirageJS script from main.ts (src/main.ts)</strong>
 
+## Project Presentation
+
+Interact with the map and the table to get information concerning Points of Interests (POIs) and Registered locations of vehicles that spent time in POIs.
+
 ## General Information and Dependencies ℹ️
 
 This project was developed as a part of a coding challenge from Localiza. This project has the following dependencies (aside from the ones which come with every Angular project):
