@@ -4,10 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Running the project locally 💻
 
+Firstly, clone the project and add the Google Maps API Key to the GMAPS_API_KEY constant at `src/environments/environment.development.ts`.
+
 Install the dependencies with `npm install` and then run the server with `ng serve`.
 After that, navigate to `http://localhost:4200/`.
 
-<strong>This project uses miragejs, to use the API delete the mirageJS script from main.ts</strong>
+<strong>This project uses miragejs, to use the API delete the mirageJS script from main.ts (src/main.ts)</strong>
 
 Clone this repository 
 ## General Information and Dependencies ℹ️
@@ -23,10 +25,16 @@ This project was developed as a part of a coding challenge from Localiza. This p
 
 You can see a live (hosted/deployed) version of this project at https://find-my-car-challenge.web.app .
 
-## Documentation 📚
+## Documentation and project structure 📚
 
-You can see the generated code documentation at documentation/index.html.
+This project supports documentation via TSDOC and Compodoc (that's the main reason you'll see comments on the code)
+
+You can see the generated code documentation at https://find-my-car-challenge.web.app/documentation/
+
 To generate new documentation files use: `npm run compodoc`.
+
+The app is made of one base module (app-module) and 3 submodules + a routing module.
+The business logic is concetrated in the services.
 
 ## Design prototypes 🎨
 

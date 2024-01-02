@@ -5,22 +5,7 @@ import { Observable, pipe,  map} from 'rxjs';
 import { PointOfInterest } from '../modules/shared/interfaces/poi.interface';
 import { VehiclePositionData } from '../modules/shared/interfaces/vehicle-position.interface';
 import { FormFilter } from '../modules/shared/interfaces/form-filter.interface';
-import { HttpParameterCodec } from '@angular/common/http';
 
-export class CustomHttpParamEncoder implements HttpParameterCodec {
-  encodeKey(key: string): string {
-    return encodeURIComponent(key);
-  }
-  encodeValue(value: string): string {
-    return encodeURIComponent(value);
-  }
-  decodeKey(key: string): string {
-    return decodeURIComponent(key);
-  }
-  decodeValue(value: string): string {
-    return decodeURIComponent(value);
-  }
-}
 /**
  * MOBI7 Service
  * 

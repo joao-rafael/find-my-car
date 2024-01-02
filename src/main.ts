@@ -10,14 +10,13 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 /**
  * MirageJS
  * 
- * APAGAR ABAIXO DESSA LINHA PARA USAR A API ORIGINAL
+ * APAGAR TUDO ABAIXO DESSA LINHA PARA USAR A API ORIGINAL
  */
 createServer({
   routes() {
     this.urlPrefix = 'https://challenge-backend.mobi7.io'
 
     this.get("/pois", (schema, request) => {
-      console.log(request.queryParams);
       return [{"id":1,"nome":"PONTO 1","raio":300,"latitude":-25.56742701740896,"longitude":-51.47653363645077},{"id":2,"nome":"PONTO 2","raio":300,"latitude":-25.568056,"longitude":-51.480278},{"id":3,"nome":"PONTO 3","raio":250,"latitude":-25.414167,"longitude":-51.566944},{"id":4,"nome":"PONTO 4","raio":250,"latitude":-25.718611,"longitude":-51.831111},{"id":5,"nome":"PONTO 5","raio":163,"latitude":-25.37240459807051,"longitude":-51.497342622606084},{"id":6,"nome":"PONTO 6","raio":170,"latitude":-22.718252406214955,"longitude":-46.78627558343578},{"id":7,"nome":"PONTO 7","raio":250,"latitude":-25.336667,"longitude":-51.5125},{"id":8,"nome":"PONTO 8","raio":250,"latitude":-24.558056,"longitude":-54.036944},{"id":9,"nome":"PONTO 9","raio":250,"latitude":-24.940833,"longitude":-50.793611},{"id":10,"nome":"PONTO 10","raio":250,"latitude":-25.279167,"longitude":-51.628333},{"id":11,"nome":"PONTO 11","raio":250,"latitude":-25.498056,"longitude":-49.275},{"id":12,"nome":"PONTO 12","raio":250,"latitude":-20.071389,"longitude":-45.312222},{"id":13,"nome":"PONTO 13","raio":250,"latitude":-21.678056,"longitude":-43.445833},{"id":14,"nome":"PONTO 14","raio":250,"latitude":-23.6525,"longitude":-46.716389},{"id":15,"nome":"PONTO 15","raio":250,"latitude":-8.112778,"longitude":-34.933889},{"id":16,"nome":"PONTO 16","raio":250,"latitude":-22.754444,"longitude":-45.122778},{"id":17,"nome":"PONTO 17","raio":250,"latitude":-25.419167,"longitude":-51.4875},{"id":18,"nome":"PONTO 18","raio":250,"latitude":-25.5375,"longitude":-48.554722},{"id":19,"nome":"PONTO 19","raio":250,"latitude":-25.152222,"longitude":-50.132778},{"id":20,"nome":"PONTO 20","raio":250,"latitude":-23.598889,"longitude":-46.888611},{"id":21,"nome":"PONTO 21","raio":250,"latitude":-22.124722,"longitude":-43.225833},{"id":22,"nome":"PONTO 22","raio":250,"latitude":-25.445278,"longitude":-51.654722},{"id":23,"nome":"PONTO 23","raio":250,"latitude":-25.547778,"longitude":-49.307222},{"id":24,"nome":"PONTO 24","raio":350,"latitude":-25.363333,"longitude":-51.468333}]
     });
 
