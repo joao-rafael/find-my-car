@@ -7,6 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Install the dependencies with `npm install` and then run the server with `ng serve`.
 After that, navigate to `http://localhost:4200/`.
 
+<strong>This project uses miragejs, to use the API delete the mirageJS script from main.ts</strong>
+
 Clone this repository 
 ## General Information and Dependencies ℹ️
 
@@ -14,7 +16,7 @@ This project was developed as a part of a coding challenge from Localiza. This p
 * Angular Material 
 * Compodoc (for documentation)
 * Firebase (for hosting)
-* JSON Server (for mock-server usage - optional)
+* MirageJS (for mock/dumb server)
 
 
 ## Live version 🌐

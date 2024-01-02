@@ -9,6 +9,8 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 /**
  * MirageJS
+ * 
+ * APAGAR ABAIXO DESSA LINHA PARA USAR A API ORIGINAL
  */
 createServer({
   routes() {
