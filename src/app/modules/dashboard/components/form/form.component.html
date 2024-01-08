@@ -10,10 +10,19 @@
     <input matInput placeholder="Vehicle License" formControlName="license">
   </mat-form-field>
 
-  <button mat-flat-button color="accent" type="submit" class="form__button" [disabled]="form.invalid">
+  <button mat-flat-button color="accent" type="submit" class="form__button" [disabled]="form.invalid" *ngIf="!isFiltered else clearButton">
       <mat-icon aria-hidden="false" aria-label="Car Icon" fontIcon="filter_alt"></mat-icon>
       <span>
         Filter
       </span>
   </button>
+  <ng-template #clearButton>
+    <button mat-flat-button color="warn" type="submit" class="form__button" (click)="clearFilter()">
+      <mat-icon aria-hidden="false" aria-label="Car Icon" fontIcon="close"></mat-icon>
+      <span>
+        Clear
+      </span>
+    </button>
+  </ng-template>
+  
 </form>

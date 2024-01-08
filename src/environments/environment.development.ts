@@ -1,4 +1,4 @@
-const GMAPS_API_KEY: string = ''
+const GMAPS_API_KEY: string = 'AIzaSyCBpZX0Kqgcv790CtEr_pmAQ2qRP4ZAiAY';
 
 export const environment = {
     production: false,

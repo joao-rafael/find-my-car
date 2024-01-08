@@ -1,9 +1,11 @@
+import { SnackbarMessages } from './../shared/enums/snackbar.enums';
 import { Component, OnInit } from '@angular/core';
 import { Mobi7Service } from '../../services/mobi7.service';
 import { VehiclePositionData, VehicleTimeInPOIData } from '../shared/interfaces/vehicle-position.interface';
 import { PointOfInterest } from '../shared/interfaces/poi.interface';
 import { POITrackingService } from 'src/app/services/poitracking.service';
 import { FormFilter } from '../shared/interfaces/form-filter.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * @description 
@@ -36,6 +38,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private poiTrackingService: POITrackingService,
     private mobi7Service: Mobi7Service,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -53,15 +56,23 @@ export class DashboardComponent implements OnInit {
     this.mobi7Service.getPois().subscribe((poisData: PointOfInterest[]) => {
       pois = poisData;
 
-        this.mobi7Service.getRegisteredPositions(filter).subscribe((positionsData: VehiclePositionData[]) => {
-          vehiclePositions = positionsData;
+      this.mobi7Service.getRegisteredPositions(filter).subscribe({next: (positionsData: VehiclePositionData[]) => {
+        vehiclePositions = positionsData;
 
-          if (pois && vehiclePositions) {
-            this.positionInPOIList = this.poiTrackingService.associatePOI(vehiclePositions, pois);
-            this.vehicleTimeInPOIList = this.poiTrackingService.calculateTimePerPOI(this.positionInPOIList);
+        if (pois && vehiclePositions) {
+          this.positionInPOIList = this.poiTrackingService.associatePOI(vehiclePositions, pois);
+          this.vehicleTimeInPOIList = this.poiTrackingService.calculateTimePerPOI(this.positionInPOIList);
+          
+          if(this.vehicleTimeInPOIList.length === 0) {
+            this.openSnackBar(SnackbarMessages.empty);
+          } else {
+            this.openSnackBar(SnackbarMessages.success);
           }
-        });
-      });
+        }
+      }, error: () => {
+        this.openSnackBar(SnackbarMessages.fail);
+      }});
+    });
   }
 
   /**
@@ -70,5 +81,18 @@ export class DashboardComponent implements OnInit {
    */
   onFilterChange(filter: FormFilter): void {
     this.loadData(filter);
+  }
+
+  onFilterClear(): void {
+    this.loadData();
+    this.openSnackBar(SnackbarMessages.clear);
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Close', {
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+      duration: 10000
+    });
   }
 }

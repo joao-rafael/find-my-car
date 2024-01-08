@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormGroup } from '@angular/forms';
 import { formatDate } from '@angular/common';
+import { FormFilter } from 'src/app/modules/shared/interfaces/form-filter.interface';
 
 /**
  * @description
@@ -12,7 +13,12 @@ import { formatDate } from '@angular/common';
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
-  @Output() filterChange: EventEmitter<any> = new EventEmitter<any>();
+  isFiltered: boolean = false;
+
+  @Output() filterChange: EventEmitter<FormFilter> = new EventEmitter<FormFilter>();
+
+  @Output() filterClear: EventEmitter<void> = new EventEmitter();
+
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -36,6 +42,16 @@ export class FormComponent {
       filterParams.date = formatDate(simpleDate, 'MM/dd/yyyy', 'en-US');
     }
     this.filterChange.emit(filterParams);
+    this.isFiltered = true;
+  }
+
+  /**
+   * Clear filter function implementation
+   */
+  clearFilter() {
+    this.form.reset();
+    this.isFiltered = false;
+    this.filterClear.emit();
   }
 
   /**
